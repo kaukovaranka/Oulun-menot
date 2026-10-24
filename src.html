@@ -1,0 +1,175 @@
+<title>Oulun menot syksy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: yksi kapea palsta puhelimelle, päiväotsikot tarttuvat yläreunaan, genre-sirut suodattavat. */
+:root{
+  --bg:#f3f5f8; --card:#ffffff; --fg:#17202b; --muted:#5a6676; --line:#dde2ea;
+  --accent:#c2620f; --accent-soft:#fbead8; --night:#1d2a3d;
+  --g-teatteri:#8a3b62; --g-klassinen:#2f5d8a; --g-jazz:#7a5a12; --g-rock:#a03a2a;
+  --g-standup:#3f7a4a; --g-elokuva:#5b4a8f; --g-muu:#4d5f66;
+  --display:"Familjen Grotesk",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111823; --card:#1a2331; --fg:#e7ebf1; --muted:#9aa6b6; --line:#2a3546;
+  --accent:#f0a24b; --accent-soft:#3a2a17; --night:#0b111a;
+  --g-teatteri:#e08ab3; --g-klassinen:#8ab8e8; --g-jazz:#e2c06a; --g-rock:#f08a78;
+  --g-standup:#8fd29b; --g-elokuva:#b6a6f0; --g-muu:#a8bcc3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111823; --card:#1a2331; --fg:#e7ebf1; --muted:#9aa6b6; --line:#2a3546;
+  --accent:#f0a24b; --accent-soft:#3a2a17; --night:#0b111a;
+  --g-teatteri:#e08ab3; --g-klassinen:#8ab8e8; --g-jazz:#e2c06a; --g-rock:#f08a78;
+  --g-standup:#8fd29b; --g-elokuva:#b6a6f0; --g-muu:#a8bcc3; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+header h1{font-family:var(--display);font-weight:700;font-size:1.9rem;line-height:1.1;margin:0;text-wrap:balance}
+header p{margin:.4rem 0 0;color:var(--muted)}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;margin-top:12px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:.9rem;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--muted))}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.day{margin-top:22px}
+.day h2{font-family:var(--display);font-weight:500;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px}
+.list{display:flex;flex-direction:column;gap:8px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:3.4rem 1fr;gap:4px 12px}
+.ev.pick{border-color:var(--accent);background:linear-gradient(var(--accent-soft),var(--accent-soft)) padding-box}
+.time{font-variant-numeric:tabular-nums;font-weight:700;font-size:.95rem;padding-top:1px}
+.main{min-width:0}
+.title{font-weight:700;font-size:1.02rem;margin:0}
+.meta{color:var(--muted);font-size:.9rem;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
+.genre{font-size:.78rem;font-weight:700;color:var(--c);border:1px solid var(--c);border-radius:4px;padding:1px 6px}
+.price{font-size:.85rem;font-variant-numeric:tabular-nums}
+.star{font-size:.78rem;font-weight:700;color:var(--accent)}
+.note{grid-column:2;font-size:.88rem;margin-top:4px}
+.empty{color:var(--muted);margin-top:24px}
+footer{margin-top:32px;color:var(--muted);font-size:.85rem}
+footer ul{padding-left:1.1rem}
+footer a{color:var(--accent)}
+@media (max-width:380px){.ev{grid-template-columns:1fr}.note{grid-column:1}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Oulun menot 24.10.–14.11.</h1>
+    <p>Teatteri, konsertit, keikat, stand-up ja elokuvat. Oranssilla reunuksella merkityt ovat parhaat vinkit.</p>
+  </header>
+  <div class="filters" id="filters" role="group" aria-label="Suodata lajin mukaan"></div>
+  <main id="out"></main>
+  <footer>
+    <p>Hinta on peruslippu. Oulu Sinfonian lippuihin tulee Ticketmasterissa 2–3 € tilausmaksu (ei Musiikkikeskuksen omassa lippukaupassa). Tarkastamossa ovella 4 € palvelumaksu, ovilippu +5 €. Viiva = hintaa ei löytynyt. Tiedot koottu 24.10.2026, tarkista ennen lähtöä.</p>
+    <ul>
+      <li><a href="https://oulunteatteri.fi/" target="_blank" rel="noopener">Oulun teatteri</a></li>
+      <li><a href="https://oulusinfonia.fi/" target="_blank" rel="noopener">Oulu Sinfonia</a></li>
+      <li><a href="https://riolive.fi/ohjelmisto/" target="_blank" rel="noopener">RioLive</a></li>
+      <li><a href="https://tarkastamo-oulu.fi/tapahtumat/" target="_blank" rel="noopener">Tarkastamo</a></li>
+      <li><a href="https://www.keikkalista.fi/oulu" target="_blank" rel="noopener">Keikkalista: Oulu</a></li>
+      <li><a href="https://www.finnkino.fi/" target="_blank" rel="noopener">Finnkino</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const G = {
+  teatteri:{label:"Teatteri",c:"--g-teatteri"},
+  klassinen:{label:"Klassinen",c:"--g-klassinen"},
+  jazz:{label:"Jazz & folk",c:"--g-jazz"},
+  rock:{label:"Rock & pop",c:"--g-rock"},
+  standup:{label:"Stand-up & komedia",c:"--g-standup"},
+  elokuva:{label:"Elokuva",c:"--g-elokuva"},
+  muu:{label:"Muu",c:"--g-muu"}
+};
+// d = järjestysavain (YYYY-MM-DD), day = näytettävä päivä
+const E = [
+ {d:"2026-10-24",day:"Ohjelmistossa nyt",t:"",title:"Lapin sota",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen sotadraama, 2 h 38 min",price:"–"},
+ {d:"2026-10-24",day:"Ohjelmistossa nyt",t:"",title:"Matka Piemonteen · Kerro kaikille · Verityn varjo",place:"Finnkino Plaza",g:"elokuva",genre:"Komediadraama / draama / trilleri",price:"–"},
+ {d:"2026-10-24",day:"La 24.10.",t:"18:00",title:"Mikko Vaismaa",place:"RioLive",g:"standup",genre:"Stand-up",price:"38 €"},
+ {d:"2026-10-25",day:"Su 25.10.",t:"19:00",title:"Tuure Kilpeläinen: Suomalaisii unelmii",place:"Pohjankartanon sali",g:"rock",genre:"Pop, konserttisali",price:"–"},
+ {d:"2026-10-28",day:"Ke 28.10.",t:"19:00",title:"Teemu Viinikainen, soolokitara",place:"Mallassauna",g:"jazz",genre:"Jazz",price:"–"},
+ {d:"2026-10-29",day:"To 29.10.",t:"ilta",title:"Anna Karenina",place:"Oulun teatteri",g:"teatteri",genre:"Draama, 3 h 5 min",price:"39–41 €",pick:true,note:"Esitys on saanut erittäin hyvät arviot. Viimeiset esitykset 29.–30.10."},
+ {d:"2026-10-29",day:"To 29.10.",t:"20:00",title:"Insomnium + Kaunis Kuolematon",place:"Tarkastamo",g:"rock",genre:"Melodinen metalli",price:"39 €"},
+ {d:"2026-10-30",day:"Pe 30.10.",t:"18:30",title:"Verdi: Requiem",place:"Madetojan sali",g:"klassinen",genre:"Kuoro ja orkesteri",price:"22–42 €",pick:true,note:"Oulu Sinfonia ja Jyväskylä Sinfonia yhdessä, Jyväskylän oopperakuoro."},
+ {d:"2026-10-30",day:"Pe 30.10.",t:"19:00",title:"Yona: Kadonneet helmet",place:"Oulun teatteri",g:"rock",genre:"Laulaja-lauluntekijä, trio",price:"35 €",pick:true,note:"Samana iltana kuin Requiem."},
+ {d:"2026-10-30",day:"Pe 30.10.",t:"ilta",title:"Anna Karenina",place:"Oulun teatteri",g:"teatteri",genre:"Draama",price:"39–41 €"},
+ {d:"2026-10-30",day:"Pe 30.10.",t:"",title:"Steve 'n' Seagulls",place:"Toppila Klubi",g:"rock",genre:"Folk-rock, huumori",price:"–"},
+ {d:"2026-10-30",day:"Pe 30.10.",t:"",title:"The Silence of the Lambs",place:"Finnkino Plaza",g:"elokuva",genre:"Klassikkonäytös, trilleri",price:"–"},
+ {d:"2026-10-31",day:"La 31.10.",t:"",title:"Litku Klemetti",place:"Toppila Klubi",g:"rock",genre:"Indie-pop/rock",price:"–"},
+ {d:"2026-10-31",day:"La 31.10.",t:"21:00",title:"Ricky-Tick Big Band & Julkinen Sana",place:"Tarkastamo",g:"jazz",genre:"Big band + rap",price:"44,90 €"},
+ {d:"2026-10-31",day:"La 31.10.",t:"",title:"The Fly",place:"Finnkino Plaza",g:"elokuva",genre:"Klassikkonäytös, scifi-kauhu",price:"–"},
+ {d:"2026-10-31",day:"La 31.10.",t:"",title:"Canarias Documental (31.10.–2.11.)",place:"Aalto Siilo / kirjasto Saari",g:"elokuva",genre:"Dokumenttielokuvia",price:"–"},
+ {d:"2026-11-01",day:"Su 1.11.",t:"",title:"Johanna & Mikko Iivanainen",place:"Tuomiokirkko",g:"jazz",genre:"Jazz & blues",price:"–"},
+ {d:"2026-11-04",day:"Ke 4.11.",t:"19:00",title:"Claude Tchamitchian + Poetic Power trio",place:"RioLive",g:"jazz",genre:"Vapaa jazz, kontrabasso",price:"24 € (eläk. 15 €)"},
+ {d:"2026-11-05",day:"To 5.11.",t:"18:30",title:"Huilujen hurmaa",place:"Madetojan sali",g:"klassinen",genre:"Ahon pikkolokonserton kantaesitys, Beethovenin Pastoraalisinfonia",price:"19–32 €"},
+ {d:"2026-11-05",day:"To 5.11.",t:"20:00",title:"Jukka Poika",place:"RioLive",g:"rock",genre:"Reggae/pop",price:"39 €"},
+ {d:"2026-11-06",day:"Pe 6.11.",t:"19:00",title:"Classic Rock Show – Next Chapter",place:"RioLive",g:"rock",genre:"Rock-klassikot, tribuutti",price:"39 €"},
+ {d:"2026-11-06",day:"Pe 6.11.",t:"20:00",title:"Antti Autio: Haahuillen",place:"Tarkastamo",g:"rock",genre:"Laulaja-lauluntekijä, istumakonsertti",price:"32,90 €"},
+ {d:"2026-11-06",day:"Pe 6.11.",t:"",title:"Timo Kotipelto & Netta Skog",place:"Toppila Klubi",g:"rock",genre:"Metalli",price:"–"},
+ {d:"2026-11-06",day:"Pe 6.11.",t:"",title:"Godzilla Minus Zero (ensi-ilta)",place:"Finnkino Plaza",g:"elokuva",genre:"Scifi",price:"–"},
+ {d:"2026-11-07",day:"La 7.11.",t:"18:00",title:"Olipa kerran: Sauna",place:"RioLive",g:"standup",genre:"Komedia",price:"35,90 €"},
+ {d:"2026-11-07",day:"La 7.11.",t:"19:00",title:"Haimila & Herlin: Pari juttuu (K18)",place:"Oulun teatteri, Pikisali",g:"standup",genre:"Stand-up parisuhteesta",price:"alk. 32 €",pick:true},
+ {d:"2026-11-07",day:"La 7.11.",t:"21:00",title:"Happoradio",place:"Tarkastamo",g:"rock",genre:"Rock",price:"35 €"},
+ {d:"2026-11-08",day:"Su 8.11.",t:"15:00",title:"Miljoonasade 40 vuotta",place:"Madetojan sali",g:"rock",genre:"Pop/rock",price:"–"},
+ {d:"2026-11-09",day:"Ma 9.11.",t:"",title:"Trainspotting",place:"Finnkino Plaza",g:"elokuva",genre:"Klassikkonäytös, draama",price:"–"},
+ {d:"2026-11-10",day:"Ti 10.11.",t:"",title:"Rocky",place:"Finnkino Plaza",g:"elokuva",genre:"Klassikkonäytös, draama",price:"–"},
+ {d:"2026-11-11",day:"Ke 11.11.",t:"18:30",title:"Swing Symphony (Wynton Marsalis)",place:"Madetojan sali",g:"klassinen",genre:"Orkesteri + big band, Suomen kantaesitys",price:"22–42 €",pick:true,note:"Oulu Sinfonia ja Oulu All Star Big Band. Sopii klassisen ja jazzin ystävälle."},
+ {d:"2026-11-11",day:"Ke 11.11.",t:"19:00",title:"Emmi Kuittinen (myös klo 11:11)",place:"Mallassauna",g:"jazz",genre:"Kansanmusiikki/jazz",price:"24 €"},
+ {d:"2026-11-12",day:"To 12.11.",t:"",title:"Ojajärvi Blom Ojajärvi",place:"Kokardiklubi",g:"jazz",genre:"Folk",price:"–"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"ilta",title:"Täällä Pohjantähden alla, osa 1 (ensi-ilta)",place:"Oulun teatteri",g:"teatteri",genre:"Draama, Väinö Linna",price:"45 € (2 osaa 80 €)",pick:true,note:"Ohjaus Esa-Matti Smolander, Almana Tuula Väänänen."},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"17:00",title:"Lava-ammuntaa VIII (myös la 14.11. klo 14)",place:"RioLive",g:"standup",genre:"Komiikka",price:"24,90 €"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"19:00",title:"ANI: Tuhlaajapoika",place:"Pohjankartanon sali",g:"rock",genre:"Pop",price:"–"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"20:00",title:"Oneviolin",place:"RioLive",g:"rock",genre:"Pop, viulu",price:"36,90 €"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"ilta",title:"Rokki Raikaa: Klamydia, Stratovarius, Kotiteollisuus, Kilpi",place:"Ouluhalli",g:"rock",genre:"Rock/metalli (Klamydia punkia)",price:"alk. 32 €"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"TAR-festivaali (pe–la)",place:"Tarkastamo ym.",g:"muu",genre:"Kokeellinen äänitaide",price:"päivälippu 26 €"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"päivä",title:"Björkin näyttely avautuu",place:"Pekuri",g:"muu",genre:"Näyttely, mediataide",price:"–"},
+ {d:"2026-11-14",day:"La 14.11.",t:"ilta",title:"Täällä Pohjantähden alla, osa 2 (ensi-ilta)",place:"Oulun teatteri",g:"teatteri",genre:"Draama",price:"45 € (2 osaa 80 €)"},
+ {d:"2026-11-14",day:"La 14.11.",t:"19:30",title:"Vesterinen yhtyeineen, Kake Randelin, Juha Tapio, Haloo Helsinki!",place:"Ouluhalli",g:"rock",genre:"Pop",price:"32–50 €"},
+ {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"Viikate V30V",place:"Tullisali",g:"rock",genre:"Rock",price:"–"},
+ {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"Death Hawks & Onségen Ensemble",place:"Tukikohta",g:"rock",genre:"Psykedeelinen rock",price:"alk. 22,50 €"}
+];
+
+const KEY="oulu-menot-filter";
+let active="kaikki";
+try{const s=localStorage.getItem(KEY); if(s && (s==="kaikki"||s==="suositus"||G[s])) active=s;}catch(e){}
+
+const fEl=document.getElementById("filters");
+const opts=[["kaikki","Kaikki",null],["suositus","Parhaat vinkit","--accent"],...Object.entries(G).map(([k,v])=>[k,v.label,v.c])];
+opts.forEach(([k,label,c])=>{
+  const b=document.createElement("button");
+  b.className="chip"; b.type="button"; b.id="f-"+k; b.dataset.k=k;
+  if(c){b.style.setProperty("--c",`var(${c})`);const d=document.createElement("span");d.className="dot";b.appendChild(d);}
+  b.appendChild(document.createTextNode(label));
+  b.addEventListener("click",()=>{active=k;try{localStorage.setItem(KEY,k)}catch(e){};render();});
+  fEl.appendChild(b);
+});
+
+function render(){
+  fEl.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===active?"true":"false"));
+  const out=document.getElementById("out"); out.innerHTML="";
+  const items=E.filter(e=>active==="kaikki"||(active==="suositus"?e.pick:e.g===active));
+  if(!items.length){out.innerHTML='<p class="empty">Tällä rajauksella ei ole tapahtumia.</p>';return;}
+  let cur=null,list=null;
+  items.forEach(e=>{
+    if(e.day!==cur){cur=e.day;const s=document.createElement("section");s.className="day";
+      const h=document.createElement("h2");h.textContent=e.day;s.appendChild(h);
+      list=document.createElement("div");list.className="list";s.appendChild(list);out.appendChild(s);}
+    const g=G[e.g];
+    const a=document.createElement("article");a.className="ev"+(e.pick?" pick":"");
+    a.innerHTML=`<div class="time">${e.t||"–"}</div>
+      <div class="main"><p class="title"></p><div class="meta"></div>
+      <div class="tags"><span class="genre" style="--c:var(${g.c})"></span><span class="price"></span>${e.pick?'<span class="star">★ Vinkki</span>':''}</div></div>`;
+    a.querySelector(".title").textContent=e.title;
+    a.querySelector(".meta").textContent=e.place;
+    a.querySelector(".genre").textContent=e.genre;
+    a.querySelector(".price").textContent=e.price;
+    if(e.note){const n=document.createElement("div");n.className="note";n.textContent=e.note;a.appendChild(n);}
+    list.appendChild(a);
+  });
+}
+render();
+</script>
