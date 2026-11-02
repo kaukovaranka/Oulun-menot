@@ -57,13 +57,13 @@ footer a{color:var(--accent)}
 
 <div class="wrap">
   <header>
-    <h1>Oulun menot 26.10.–16.11.</h1>
+    <h1>Oulun menot 2.11.–23.11.</h1>
     <p>Teatteri, konsertit, keikat, stand-up ja elokuvat. Oranssilla reunuksella merkityt ovat parhaat vinkit.</p>
   </header>
   <div class="filters" id="filters" role="group" aria-label="Suodata lajin mukaan"></div>
   <main id="out"></main>
   <footer>
-    <p>Hinta on peruslippu. Oulu Sinfonian lippuihin tulee Ticketmasterissa 2–3 € tilausmaksu (ei Musiikkikeskuksen omassa lippukaupassa). Tarkastamossa ovella 4 € palvelumaksu, ovilippu +5 €. Viiva = hintaa ei löytynyt. Tiedot koottu 26.10.2026, tarkista ennen lähtöä.</p>
+    <p>Hinta on peruslippu. Oulu Sinfonian lippuihin tulee Ticketmasterissa 2–3 € tilausmaksu (ei Musiikkikeskuksen omassa lippukaupassa). Tarkastamossa ovella 4 € palvelumaksu, ovilippu +5 €. Viiva = hintaa ei löytynyt. Tiedot koottu 2.11.2026, tarkista ennen lähtöä.</p>
     <ul>
       <li><a href="https://oulunteatteri.fi/" target="_blank" rel="noopener">Oulun teatteri</a></li>
       <li><a href="https://oulusinfonia.fi/" target="_blank" rel="noopener">Oulu Sinfonia</a></li>
@@ -87,37 +87,21 @@ const G = {
 };
 // d = järjestysavain (YYYY-MM-DD), day = näytettävä päivä
 const E = [
- {d:"2026-10-26",day:"Ohjelmistossa nyt",t:"",title:"Lapin sota",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen sotadraama, 2 h 38 min",price:"–"},
- {d:"2026-10-26",day:"Ohjelmistossa nyt",t:"",title:"Matka Piemonteen · Kerro kaikille · Verityn varjo · Pirjo i Sverige",place:"Finnkino Plaza",g:"elokuva",genre:"Komediadraama / draama / trilleri / komedia",price:"–"},
- {d:"2026-10-26",day:"Ohjelmistossa nyt",t:"",title:"Faravidin maa (26.8.–12.12.)",place:"Raksilan marketti",g:"muu",genre:"Tanssi, sirkus, immersiivinen esitys, 2 h 30 min",price:"48 €"},
- {d:"2026-10-26",day:"Ohjelmistossa nyt",t:"",title:"Kuuttaren puutarha (–30.11.)",place:"Kivisydän",g:"muu",genre:"Mediataiteen näyttely, Jakob Kudsk Steensen",price:"–"},
- {d:"2026-10-27",day:"Ti 27.10.",t:"",title:"MallasLive: Nektar",place:"Mallassauna",g:"rock",genre:"Progressiivinen rock",price:"–"},
- {d:"2026-10-28",day:"Ke 28.10.",t:"19:00",title:"Teemu Viinikainen, soolokitara",place:"Mallassauna",g:"jazz",genre:"Jazz",price:"–"},
- {d:"2026-10-28",day:"Ke 28.10.",t:"19:00",title:"Jussi Simola Stand Up Show (28.–31.10.)",place:"RioLive",g:"standup",genre:"Stand-up",price:"loppuunmyyty"},
- {d:"2026-10-29",day:"To 29.10.",t:"19:00",title:"Peltokurjen klubi-ilta: Lauluja luopumisesta",place:"Cafe Mallaamo",g:"muu",genre:"Folk",price:"alk. 12,50 €"},
- {d:"2026-10-29",day:"To 29.10.",t:"ilta",title:"Anna Karenina",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama, 3 h 5 min",price:"39–41 €",pick:true,note:"Kehuttu suurproduktio viimeisillä esityksillään – torstai on vapaa ilta, kun perjantaina on Requiem."},
- {d:"2026-10-29",day:"To 29.10.",t:"20:00",title:"Insomnium + Kaunis Kuolematon",place:"Tarkastamo",g:"rock",genre:"Melodinen metalli",price:"39 €"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"18:30",title:"Verdi: Requiem",place:"Madetojan sali",g:"klassinen",genre:"Kuoro ja orkesteri, joht. Pablo Mielgo",price:"42 €",pick:true,note:"Syksyn suurin klassinen konsertti: Oulu Sinfonia ja Jyväskylä Sinfonia yhdessä, mukana Jyväskylän oopperakuoro."},
- {d:"2026-10-30",day:"Pe 30.10.",t:"19:00",title:"Yona: Kadonneet helmet",place:"Oulun teatteri",g:"rock",genre:"Laulaja-lauluntekijä, trio",price:"35 €"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"ilta",title:"Anna Karenina (viimeinen esitys)",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama",price:"39–41 €"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"20:00",title:"Oiva Väre",place:"Tuba Food & Lounge",g:"muu",genre:"Folk",price:"–"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"",title:"Steve 'n' Seagulls",place:"Toppila Klubi",g:"rock",genre:"Folk-rock, huumori",price:"–"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"",title:"Uhrilampaat (The Silence of the Lambs)",place:"Finnkino Plaza",g:"elokuva",genre:"Kympin klassikko, trilleri",price:"–"},
- {d:"2026-10-30",day:"Pe 30.10.",t:"",title:"Minä ja Riikka Purra",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen ensi-ilta",price:"–"},
- {d:"2026-10-31",day:"La 31.10.",t:"",title:"Litku Klemetti",place:"Toppila Klubi",g:"rock",genre:"Indie-pop/rock",price:"–"},
- {d:"2026-10-31",day:"La 31.10.",t:"",title:"The Fly",place:"Finnkino Plaza",g:"elokuva",genre:"Kympin klassikko, scifi-kauhu",price:"–"},
- {d:"2026-10-31",day:"La 31.10.",t:"",title:"Out of Time (30.10.–28.3.)",place:"Oulu2026",g:"muu",genre:"Nykytaiteen näyttely",price:"–"},
- {d:"2026-11-01",day:"Su 1.11.",t:"",title:"Johanna & Mikko Iivanainen",place:"Tuomiokirkko",g:"jazz",genre:"Jazz & blues",price:"–"},
- {d:"2026-11-04",day:"Ke 4.11.",t:"19:00",title:"Claude Tchamitchian In Spirit + Poetic Power trio",place:"RioLive",g:"jazz",genre:"Vapaa jazz, kontrabasso",price:"24 € (eläk. 15 €)"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Lapin sota",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen sotadraama, 2 h 38 min",price:"–"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Sense and Sensibility · Berliinin sankari · Kerro kaikille · Verityn varjo · Pirjo i Sverige",place:"Finnkino Plaza",g:"elokuva",genre:"Draama / komedia, ks. esitysajat Finnkinon sivulta",price:"–"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Minä ja Riikka Purra",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen elokuva",price:"–"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Faravidin maa (–12.12.)",place:"Raksilan marketti",g:"muu",genre:"Tanssi, sirkus, immersiivinen esitys, 2 h 30 min",price:"48 €"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Kuuttaren puutarha (–30.11.)",place:"Kivisydän",g:"muu",genre:"Mediataiteen näyttely, Jakob Kudsk Steensen",price:"–"},
+ {d:"2026-11-02",day:"Ohjelmistossa nyt",t:"",title:"Out of Time (–28.3.)",place:"Oulu2026",g:"muu",genre:"Nykytaiteen näyttely",price:"–"},
+ {d:"2026-11-04",day:"Ke 4.11.",t:"19:00",title:"OMJ: Claude Tchamitchian In Spirit + Poetic Power trio",place:"RioLive",g:"jazz",genre:"Vapaa jazz, kontrabasso",price:"24 € (eläk. 15 €)",pick:true,note:"Oulun Musiikkijuhlien jazzia: ranskalainen kontrabasisti kolmen muusikon kokoonpanolla."},
  {d:"2026-11-05",day:"To 5.11.",t:"18:30",title:"Huilujen hurmaa",place:"Madetojan sali",g:"klassinen",genre:"Nielsen, Ahon pikkolokonserton kantaesitys, Beethovenin Pastoraalisinfonia",price:"32 €",pick:true,note:"Kalevi Ahon uuden konserton kantaesitys ja Beethovenin Pastoraali, joht. Rumon Gamba."},
  {d:"2026-11-06",day:"Pe 6.11.",t:"19:00",title:"Classic Rock Show – Next Chapter",place:"RioLive",g:"rock",genre:"Classic rock",price:"39 €"},
- {d:"2026-11-06",day:"Pe 6.11.",t:"20:00",title:"Antti Autio: Haahuillen",place:"Tarkastamo",g:"rock",genre:"Laulaja-lauluntekijä, konserttisalikiertue",price:"32,90 €",pick:true,note:"Yksi maan kiinnostavimmista lauluntekijöistä istumakonsertissa – samana iltana Classic Rock Show ja Kotipelto & Skog."},
- {d:"2026-11-06",day:"Pe 6.11.",t:"",title:"Timo Kotipelto & Netta Skog",place:"Toppila Klubi",g:"rock",genre:"Metalli, akustinen duo",price:"–"},
+ {d:"2026-11-06",day:"Pe 6.11.",t:"20:00",title:"Antti Autio: Haahuillen",place:"Tarkastamo",g:"rock",genre:"Laulaja-lauluntekijä, konserttisalikiertue",price:"32,90 €",pick:true,note:"Yksi maan kiinnostavimmista lauluntekijöistä istumakonsertissa."},
  {d:"2026-11-06",day:"Pe 6.11.",t:"",title:"Yön lapsi",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen ensi-ilta",price:"–"},
  {d:"2026-11-07",day:"La 7.11.",t:"16:00",title:"Kamarikonsertti: Sydämen ja soinnin tarinoita",place:"Tulindbergin sali",g:"klassinen",genre:"Schumann, Brahms, Beethovenin Arkkiherttua-trio",price:"vapaa pääsy"},
  {d:"2026-11-07",day:"La 7.11.",t:"18:00",title:"Olipa kerran: Sauna",place:"RioLive",g:"standup",genre:"Komedia",price:"35,90 €"},
  {d:"2026-11-07",day:"La 7.11.",t:"19:00",title:"Haimila & Herlin: Pari juttuu (K18)",place:"Oulun teatteri, Pikisali",g:"standup",genre:"Stand-up parisuhteesta",price:"alk. 32 €"},
- {d:"2026-11-07",day:"La 7.11.",t:"21:00",title:"Happoradio",place:"Tarkastamo",g:"rock",genre:"Suomirock",price:"35 €"},
+ {d:"2026-11-07",day:"La 7.11.",t:"21:00",title:"Happoradio",place:"Tarkastamo",g:"rock",genre:"Suomirock, klubikiertue",price:"35 €"},
  {d:"2026-11-08",day:"Su 8.11.",t:"15:00",title:"Miljoonasade 40 vuotta",place:"Madetojan sali",g:"rock",genre:"Pop/rock, juhlakiertue",price:"–"},
  {d:"2026-11-09",day:"Ma 9.11.",t:"",title:"Trainspotting",place:"Finnkino Plaza",g:"elokuva",genre:"Kympin klassikko, draama",price:"10 €"},
  {d:"2026-11-10",day:"Ti 10.11.",t:"",title:"Rocky",place:"Finnkino Plaza",g:"elokuva",genre:"Kympin klassikko, draama",price:"10 €"},
@@ -126,20 +110,30 @@ const E = [
  {d:"2026-11-11",day:"Ke 11.11.",t:"20:00",title:"Konserttiklubi: Swingiä sinkuille",place:"Ravintola Preludi",g:"jazz",genre:"Dixieland, Kenneth Sjöwall's Dixie Dudes",price:"vapaa pääsy"},
  {d:"2026-11-12",day:"To 12.11.",t:"",title:"Oj Ojajärvi Blom Ojajärvi",place:"Kulttuurikasarmi / Kokardiklubi",g:"muu",genre:"Folk",price:"–"},
  {d:"2026-11-13",day:"Pe 13.11.",t:"17:00",title:"Lava-ammuntaa VIII: After Eight -komiikkaa",place:"RioLive",g:"standup",genre:"Komedia",price:"24,90 €"},
+ {d:"2026-11-13",day:"Pe 13.11.",t:"19:00",title:"Täällä Pohjantähden alla, osa 1 (ensi-ilta)",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama, Linnan trilogia, ohj. Esa-Matti Smolander",price:"45 €",pick:true,note:"Syksyn teatteritapaus kaksoisensi-iltana pe–la; molemmat osat yhteensä 80 €."},
  {d:"2026-11-13",day:"Pe 13.11.",t:"19:00",title:"ANI: Tuhlaajapoika",place:"Pohjankartanon sali",g:"rock",genre:"Pop, konserttisalikiertue",price:"–"},
  {d:"2026-11-13",day:"Pe 13.11.",t:"20:00",title:"Oneviolin",place:"RioLive",g:"rock",genre:"Pop, viulu",price:"36,90 €"},
- {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"Täällä Pohjantähden alla, osa 1 (ensi-ilta)",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama, Linnan trilogia, ohj. Esa-Matti Smolander",price:"45 €",pick:true,note:"Syksyn teatteritapaus kaksoisensi-iltana pe–la, Almana Tuula Väänänen; molemmat osat 80 €."},
  {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"TAR-festivaali (13.–14.11.)",place:"Tarkastamo",g:"muu",genre:"Subarktinen äänitaidefestivaali",price:"päivälippu 26 €"},
  {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"Björk: Ancestress, Sorrowful Soil & Björk Orkestral (–31.12.)",place:"Kauppakortteli Pekuri",g:"muu",genre:"Audiovisuaalinen näyttely, avautuu",price:"–"},
  {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"Lumo Art & Tech (13.–22.11.)",place:"Useita paikkoja",g:"muu",genre:"Taide- ja teknologiafestivaali",price:"–"},
  {d:"2026-11-13",day:"Pe 13.11.",t:"",title:"Unesta tehty mies",place:"Finnkino Plaza",g:"elokuva",genre:"Kotimainen ensi-ilta",price:"–"},
  {d:"2026-11-14",day:"La 14.11.",t:"14:00",title:"Lava-ammuntaa VIII: After Eight -komiikkaa",place:"RioLive",g:"standup",genre:"Komedia",price:"24,90 €"},
- {d:"2026-11-14",day:"La 14.11.",t:"19:30",title:"Vesterinen yhtyeineen, Juha Tapio, Haloo Helsinki! ym.",place:"Ouluhalli",g:"rock",genre:"Pop",price:"32 €"},
+ {d:"2026-11-14",day:"La 14.11.",t:"16:00",title:"Täällä Pohjantähden alla, osa 2 (ensi-ilta)",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama",price:"45 €"},
+ {d:"2026-11-14",day:"La 14.11.",t:"19:30",title:"Vesterinen yhtyeineen, Kake Randelin, Juha Tapio, Haloo Helsinki!",place:"Ouluhalli",g:"rock",genre:"Pop",price:"32 €"},
  {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"Viikate V30V",place:"Tullisali",g:"rock",genre:"Suomirock, 30-vuotiskiertue",price:"–"},
  {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"UFOP-klubi: Death Hawks & Onségen Ensemble",place:"Tukikohta",g:"rock",genre:"Psykedeelinen rock",price:"alk. 22,50 €"},
  {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"Jemina",place:"Tuba Food & Lounge",g:"rock",genre:"Pop",price:"–"},
  {d:"2026-11-14",day:"La 14.11.",t:"20:00",title:"Kaino Varietee: Pikkujoulu",place:"RioLive",g:"standup",genre:"Varietee",price:"40 €"},
- {d:"2026-11-14",day:"La 14.11.",t:"",title:"Täällä Pohjantähden alla, osa 2 (ensi-ilta)",place:"Oulun teatteri, suuri näyttämö",g:"teatteri",genre:"Draama",price:"45 €"}
+ {d:"2026-11-18",day:"Ke 18.11.",t:"19:00",title:"OMJ: New3",place:"RioLive",g:"jazz",genre:"Jazz",price:"24 € (eläk. 15 €)"},
+ {d:"2026-11-19",day:"To 19.11.",t:"19:30",title:"Beyond the Sky (maailmanensi-ilta)",place:"Ouluhalli",g:"klassinen",genre:"Lauri Porra, J-P Metsävainion tähtikuvat, joht. Dalia Stasevska, n. 50 min",price:"36 €",pick:true,note:"Oulu2026:n erikoiskonsertti: Mari Samuelsen, Aphrodite Patoulidou ja Dalia Stasevska; uusintoja 20. ja 21.11."},
+ {d:"2026-11-20",day:"Pe 20.11.",t:"13:00",title:"Beyond the Sky",place:"Ouluhalli",g:"klassinen",genre:"Lauri Porra, joht. Dalia Stasevska",price:"36 €"},
+ {d:"2026-11-20",day:"Pe 20.11.",t:"19:00",title:"Vesala: Laulumailla",place:"Pohjankartanon sali",g:"rock",genre:"Pop, konserttisalikiertue",price:"–"},
+ {d:"2026-11-20",day:"Pe 20.11.",t:"19:30",title:"Beyond the Sky",place:"Ouluhalli",g:"klassinen",genre:"Lauri Porra, joht. Dalia Stasevska",price:"36 €"},
+ {d:"2026-11-21",day:"La 21.11.",t:"16:30",title:"Beyond the Sky",place:"Ouluhalli",g:"klassinen",genre:"Lauri Porra, joht. Dalia Stasevska",price:"36 €"},
+ {d:"2026-11-21",day:"La 21.11.",t:"19:00",title:"Amuri",place:"Tuba Food & Lounge",g:"rock",genre:"Rock",price:"alk. 18 €"},
+ {d:"2026-11-21",day:"La 21.11.",t:"19:00",title:"Jarkko Martikainen",place:"Pohjankartanon sali",g:"muu",genre:"Folk, laulaja-lauluntekijä",price:"–"},
+ {d:"2026-11-21",day:"La 21.11.",t:"19:30",title:"Beyond the Sky",place:"Ouluhalli",g:"klassinen",genre:"Lauri Porra, joht. Dalia Stasevska",price:"36 €"},
+ {d:"2026-11-21",day:"La 21.11.",t:"",title:"Gwenifer Raymond",place:"Tukikohta",g:"muu",genre:"Folk, soolokitara",price:"–"}
 ];
 
 const KEY="oulu-menot-filter";
